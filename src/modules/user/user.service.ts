@@ -10,12 +10,10 @@ import { UserRepository } from './repository/user-repository';
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
   async create(createDto: CreateUserDto) {
-    try {
-      return await this.userRepository.create(createDto);
-    } catch (error) {
-      throw new InternalServerErrorException(
-        error?.message || 'Unexpected error',
-      );
+    const user = await this.userRepository.findByEmail(createDto.email);
+    if (user) {
+      throw new NotFoundException('User already exists');
     }
+    return await this.userRepository.create(createDto);
   }
 }
