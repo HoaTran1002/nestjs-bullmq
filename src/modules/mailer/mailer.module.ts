@@ -20,7 +20,7 @@ import { MailerService } from './mailer.service';
         transport: {
           host: configService.mailerHost,
           port: configService.mailerPort,
-          secure: configService.mailerSecure === 'true',
+          secure: configService.mailerSecure,
           pool: true,
           auth: {
             user: configService.mailerUsername,

@@ -12,7 +12,7 @@ import {
 import { MailerService } from '@/modules/mailer/mailer.service';
 import { PrismaService } from '@/core/database/prisma.service';
 import { SnsSmsService } from '@/core/aws/services/sns-sms.service';
-import { NonRetryableSmsError, RetryableSmsError } from './errors';
+import { NonRetryableSmsError, RetryableSmsError } from './error';
 import { OTP_QUEUE_NAME, OtpQueueJob } from './otp-queue.types';
 
 @Processor(OTP_QUEUE_NAME)

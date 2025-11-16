@@ -557,10 +557,10 @@ export class PrismaService
               LIMIT ${limitPlaceholder}
             `;
 
-            const rawResults = await prisma.$queryRawUnsafe<any[]>(
+            const rawResults = (await prisma.$queryRawUnsafe(
               query,
               ...params,
-            );
+            )) as any[];
 
             // Process results for cursor pagination
             const hasMore = rawResults.length > normalizedLimit;
@@ -724,7 +724,7 @@ export class PrismaService
       LIMIT ${limitPlaceholder};
     `;
 
-            return prisma.$queryRawUnsafe<any[]>(query, ...params);
+            return prisma.$queryRawUnsafe(query, ...params) as any[];
           },
         },
       },
